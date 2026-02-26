@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Money Heist: The Professor's Coordinates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <header class="top-bar">
+        <div class="logo-area">
+            <span class="mask-icon">🎭</span>
+            <span class="site-title">La Casa De CTF</span>
+        </div>
+
+<!-- 3D rotating image -->
+<div class="logo-3d-wrapper">
+    <img src="assets\logo 2.png" alt="Heist mask" class="logo-3d-img" />
+</div>
+
+        <div class="status-lights">
+            <span class="light red"></span>
+            <span class="light amber"></span>
+            <span class="light green"></span>
+        </div>
+    </header>
+
+    <!-- Background music control -->
+    <div class="music-bar">
+        <button id="music-toggle" class="btn small">Play Music</button>
+        <audio id="bg-music" loop>
+            <source src="assets\CSM-1.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <main class="container">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>The Professor’s  Escape</h1>
+                <p>
+                    The crew lost the drop location for the getaway van.
+                    Decode the Professor’s trail, uncover the hidden coordinates, and escape before the sirens hit.
+                </p>
+                <button id="start-btn" class="btn primary">Enter the Bank</button>
+            </div>
+
+        </section>
+
+        <!-- TIMELINE / STAGE INDICATOR -->
+        <section class="timeline">
+            <div class="stage active" data-stage="1">
+                <span class="stage-number">1</span>
+                <span class="stage-label">Vault Riddle</span>
+            </div>
+            <div class="stage" data-stage="2">
+                <span class="stage-number">2</span>
+                <span class="stage-label">Crew Chat</span>
+            </div>
+            <div class="stage" data-stage="3">
+                <span class="stage-number">3</span>
+                <span class="stage-label">Heist Console</span>
+            </div>
+        </section>
+
+        <!-- STAGE 1: RIDDLE -->
+        <section class="panel" id="stage-1">
+            <h2>Stage 1 – Vault Riddle</h2>
+            <p class="panel-intro">
+                The vault door is sealed with a riddle. Solve it to unlock the crew’s encrypted chat.
+            </p>
+
+            <div class="riddle-card">
+                <p class="riddle-text">
+                    “I’m the place where <span class="highlight-word">red</span> meets <span
+                        class="highlight-word">black</span>,
+                    where plans are drawn and time ticks back.
+                    Count the letters in each city you see, then sum them up to get the key:
+                    <strong>Tokyo, Berlin, Nairobi, Denver, Rio</strong>.”
+                </p>
+                <p class="riddle-hint">
+                    Hint: Add the number of letters in each name. Use that total as the code.
+                </p>
+
+                <div class="input-row">
+                    <input type="number" id="riddle-answer" placeholder="Enter code" />
+                    <button class="btn" id="riddle-submit">Unlock</button>
+                </div>
+                <p id="riddle-feedback" class="feedback"></p>
+            </div>
+        </section>
+
+        <!-- STAGE 2: CREW CHAT -->
+        <section class="panel hidden" id="stage-2">
+            <h2>Stage 2 – Crew Chat Log</h2>
+            <p class="panel-intro">
+                The crew left a suspicious chat trail. Read carefully, not everything is what it seems.
+            </p>
+
+            <div class="chat-window">
+                <div class="chat-message tokyo">
+                    <span class="chat-name">Tokyo</span>
+                    <span class="chat-text">
+                        Professor, are you sure about this? The cops are watching every <span
+                            class="chat-emphasis">street</span>.
+                    </span>
+                </div>
+                <div class="chat-message professor">
+                    <span class="chat-name">Professor</span>
+                    <span class="chat-text">
+                        Relax. Focus on the <span class="chat-emphasis">numbers</span>, not the noise.
+                    </span>
+                </div>
+                <div class="chat-message berlin">
+                    <span class="chat-name">Berlin</span>
+                    <span class="chat-text">
+                        The van is not far from the Bank of Spain. Think of
+                        <span class="chat-emphasis">degrees</span>, <span class="chat-emphasis">minutes</span>, and
+                        chaos.
+                    </span>
+                </div>
+                <div class="chat-message nairobi">
+                    <span class="chat-name">Nairobi</span>
+                    <span class="chat-text">
+                        Look at the <span class="chat-emphasis">console</span> again. The answer is in front of you,
+                        if you read between the <span class="chat-emphasis">lines</span>.
+                    </span>
+                </div>
+                <div class="chat-message rio">
+                    <span class="chat-name">Rio</span>
+                    <span class="chat-text">
+                        Professor changed the meeting point twice. First near the museum, then by the
+                        <span class="chat-emphasis">river</span>. Check the final <span
+                            class="chat-emphasis">coordinates</span> log.
+                    </span>
+                </div>
+            </div>
+
+            <p class="small-hint">
+                Mini‑hint: Right‑click can be as powerful as a safe‑cracker.
+            </p>
+
+            <button class="btn primary" id="to-console-btn">Open Heist Console</button>
+        </section>
+
+<!-- STAGE 3: CONSOLE -->
+<section class="panel hidden" id="stage-3">
+    <h2>Stage 3 – Heist Console</h2>
+    <p class="panel-intro">
+        The Professor’s terminal is online. Run the right commands to get the final hint.
+    </p>
+
+    <div class="terminal">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="term-title">professor@lacasadectf:~$</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+            <div class="term-line">professor@lacasadectf:~$ help</div>
+            <div class="term-line">Commands: crew, hint, trace, clear</div>
+        </div>
+        <div class="terminal-input-row">
+            <span class="prompt">professor@lacasadectf:~$</span>
+            <input id="terminal-input" autocomplete="off" />
+        </div>
+    </div>
+
+    <p id="final-message" class="final-message hidden">
+        You have everything you need. Find the hidden coordinates.
+        The Inspector is already on your trail.
+    </p>
+</section>
+
+
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Money Heist CTF – Follow the plan, not your heart.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
