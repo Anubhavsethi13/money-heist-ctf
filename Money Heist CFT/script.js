@@ -181,8 +181,8 @@ observer.observe(stagePanels[3], { attributes: true, attributeFilter: ["class"] 
 
 // Example hidden coordinates: Madrid approx (latitude 40.4168, longitude -3.7038)
 // Replace these with your real values.
-const secretLatParts = ["40", ".", "4168"];
-const secretLngParts = ["-3", ".", "7038"];
+const secretLatParts = ["21", ".", "126467"];
+const secretLngParts = ["79", ".", "159823"];
 
 // This function is NEVER called by the UI. It's just here as a believable
 // "debug helper" that a player might discover and execute from the console.
@@ -209,3 +209,4 @@ they will land in this section.
 You can also add a tiny hint in HTML comments near the footer if you want:
 <!-- Only fools ignore the Professor's debug helpers. -->
 */
+
